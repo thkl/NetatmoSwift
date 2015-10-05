@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="8195" systemVersion="15B22c" minimumToolsVersion="Automatic">
+    <entity name="Measurement" syncable="YES">
+        <attribute name="moduleid" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="stationid" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="timestamp" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="type" optional="YES" attributeType="Decimal" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="value" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+    </entity>
+    <entity name="Metadata" syncable="YES">
+        <attribute name="expires" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="key" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="value" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="Module" syncable="YES">
+        <attribute name="moduleid" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="modulename" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="moduletype" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="parentstationid" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="Station" syncable="YES">
+        <attribute name="stationid" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="stationname" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="stationtype" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Measurement" positionX="-36" positionY="45" width="128" height="120"/>
+        <element name="Module" positionX="-54" positionY="18" width="128" height="105"/>
+        <element name="Station" positionX="-63" positionY="-18" width="128" height="90"/>
+        <element name="Metadata" positionX="-45" positionY="54" width="128" height="90"/>
+    </elements>
+</model>

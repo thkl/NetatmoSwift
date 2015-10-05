@@ -1,0 +1,556 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		E90A0E1C1BC273DE004578E4 /* NetatmoLoginProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = E90A0E1B1BC273DE004578E4 /* NetatmoLoginProvider.swift */; settings = {ASSET_TAGS = (); }; };
+		E90A0E1E1BC2742A004578E4 /* NetworkStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = E90A0E1D1BC2742A004578E4 /* NetworkStack.swift */; settings = {ASSET_TAGS = (); }; };
+		E90A0E201BC28939004578E4 /* NetatmoCientConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = E90A0E1F1BC28939004578E4 /* NetatmoCientConstants.swift */; settings = {ASSET_TAGS = (); }; };
+		E91CA2111BC05C4D00A8FCD3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E91CA2101BC05C4D00A8FCD3 /* AppDelegate.swift */; };
+		E91CA2131BC05C4D00A8FCD3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E91CA2121BC05C4D00A8FCD3 /* ViewController.swift */; };
+		E91CA2161BC05C4D00A8FCD3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E91CA2141BC05C4D00A8FCD3 /* Main.storyboard */; };
+		E91CA2191BC05C4D00A8FCD3 /* netatmoclient.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E91CA2171BC05C4D00A8FCD3 /* netatmoclient.xcdatamodeld */; };
+		E91CA21B1BC05C4D00A8FCD3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E91CA21A1BC05C4D00A8FCD3 /* Assets.xcassets */; };
+		E91CA21E1BC05C4D00A8FCD3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E91CA21C1BC05C4D00A8FCD3 /* LaunchScreen.storyboard */; };
+		E91CA2291BC05C4D00A8FCD3 /* netatmoclientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E91CA2281BC05C4D00A8FCD3 /* netatmoclientTests.swift */; };
+		E91CA2341BC05C4D00A8FCD3 /* netatmoclientUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E91CA2331BC05C4D00A8FCD3 /* netatmoclientUITests.swift */; };
+		E91CA2421BC05C6700A8FCD3 /* NetatmoNetworkProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = E91CA2411BC05C6700A8FCD3 /* NetatmoNetworkProvider.swift */; settings = {ASSET_TAGS = (); }; };
+		E91CA2461BC156B200A8FCD3 /* CoreDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = E91CA2451BC156B200A8FCD3 /* CoreDataStore.swift */; settings = {ASSET_TAGS = (); }; };
+		E91CA2481BC158C400A8FCD3 /* NetatmoStationProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = E91CA2471BC158C400A8FCD3 /* NetatmoStationProvider.swift */; settings = {ASSET_TAGS = (); }; };
+		E91CA24A1BC15C7800A8FCD3 /* NetatmoModuleProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = E91CA2491BC15C7800A8FCD3 /* NetatmoModuleProvider.swift */; settings = {ASSET_TAGS = (); }; };
+		E9CFB0C61BC18C4C004FE3CB /* NetatmoMeasureProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9CFB0C51BC18C4C004FE3CB /* NetatmoMeasureProvider.swift */; settings = {ASSET_TAGS = (); }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		E91CA2251BC05C4D00A8FCD3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E91CA2051BC05C4D00A8FCD3 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E91CA20C1BC05C4D00A8FCD3;
+			remoteInfo = netatmoclient;
+		};
+		E91CA2301BC05C4D00A8FCD3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E91CA2051BC05C4D00A8FCD3 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E91CA20C1BC05C4D00A8FCD3;
+			remoteInfo = netatmoclient;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		E90A0E1B1BC273DE004578E4 /* NetatmoLoginProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetatmoLoginProvider.swift; sourceTree = "<group>"; };
+		E90A0E1D1BC2742A004578E4 /* NetworkStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkStack.swift; sourceTree = "<group>"; };
+		E90A0E1F1BC28939004578E4 /* NetatmoCientConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetatmoCientConstants.swift; sourceTree = "<group>"; };
+		E91CA20D1BC05C4D00A8FCD3 /* netatmoclient.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = netatmoclient.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E91CA2101BC05C4D00A8FCD3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		E91CA2121BC05C4D00A8FCD3 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		E91CA2151BC05C4D00A8FCD3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		E91CA2181BC05C4D00A8FCD3 /* netatmoclient.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = netatmoclient.xcdatamodel; sourceTree = "<group>"; };
+		E91CA21A1BC05C4D00A8FCD3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		E91CA21D1BC05C4D00A8FCD3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		E91CA21F1BC05C4D00A8FCD3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E91CA2241BC05C4D00A8FCD3 /* netatmoclientTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = netatmoclientTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		E91CA2281BC05C4D00A8FCD3 /* netatmoclientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = netatmoclientTests.swift; sourceTree = "<group>"; };
+		E91CA22A1BC05C4D00A8FCD3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E91CA22F1BC05C4D00A8FCD3 /* netatmoclientUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = netatmoclientUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		E91CA2331BC05C4D00A8FCD3 /* netatmoclientUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = netatmoclientUITests.swift; sourceTree = "<group>"; };
+		E91CA2351BC05C4D00A8FCD3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E91CA2411BC05C6700A8FCD3 /* NetatmoNetworkProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetatmoNetworkProvider.swift; sourceTree = "<group>"; };
+		E91CA2451BC156B200A8FCD3 /* CoreDataStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStore.swift; sourceTree = "<group>"; };
+		E91CA2471BC158C400A8FCD3 /* NetatmoStationProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetatmoStationProvider.swift; sourceTree = "<group>"; };
+		E91CA2491BC15C7800A8FCD3 /* NetatmoModuleProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetatmoModuleProvider.swift; sourceTree = "<group>"; };
+		E9CFB0C51BC18C4C004FE3CB /* NetatmoMeasureProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetatmoMeasureProvider.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		E91CA20A1BC05C4D00A8FCD3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E91CA2211BC05C4D00A8FCD3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E91CA22C1BC05C4D00A8FCD3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		E91CA2041BC05C4D00A8FCD3 = {
+			isa = PBXGroup;
+			children = (
+				E91CA20F1BC05C4D00A8FCD3 /* netatmoclient */,
+				E91CA2271BC05C4D00A8FCD3 /* netatmoclientTests */,
+				E91CA2321BC05C4D00A8FCD3 /* netatmoclientUITests */,
+				E91CA20E1BC05C4D00A8FCD3 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		E91CA20E1BC05C4D00A8FCD3 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E91CA20D1BC05C4D00A8FCD3 /* netatmoclient.app */,
+				E91CA2241BC05C4D00A8FCD3 /* netatmoclientTests.xctest */,
+				E91CA22F1BC05C4D00A8FCD3 /* netatmoclientUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		E91CA20F1BC05C4D00A8FCD3 /* netatmoclient */ = {
+			isa = PBXGroup;
+			children = (
+				E91CA2101BC05C4D00A8FCD3 /* AppDelegate.swift */,
+				E91CA2121BC05C4D00A8FCD3 /* ViewController.swift */,
+				E91CA2141BC05C4D00A8FCD3 /* Main.storyboard */,
+				E91CA21A1BC05C4D00A8FCD3 /* Assets.xcassets */,
+				E91CA21C1BC05C4D00A8FCD3 /* LaunchScreen.storyboard */,
+				E91CA21F1BC05C4D00A8FCD3 /* Info.plist */,
+				E91CA2171BC05C4D00A8FCD3 /* netatmoclient.xcdatamodeld */,
+				E91CA2451BC156B200A8FCD3 /* CoreDataStore.swift */,
+				E90A0E1D1BC2742A004578E4 /* NetworkStack.swift */,
+				E90A0E1F1BC28939004578E4 /* NetatmoCientConstants.swift */,
+				E90A0E1B1BC273DE004578E4 /* NetatmoLoginProvider.swift */,
+				E91CA2411BC05C6700A8FCD3 /* NetatmoNetworkProvider.swift */,
+				E91CA2471BC158C400A8FCD3 /* NetatmoStationProvider.swift */,
+				E91CA2491BC15C7800A8FCD3 /* NetatmoModuleProvider.swift */,
+				E9CFB0C51BC18C4C004FE3CB /* NetatmoMeasureProvider.swift */,
+			);
+			path = netatmoclient;
+			sourceTree = "<group>";
+		};
+		E91CA2271BC05C4D00A8FCD3 /* netatmoclientTests */ = {
+			isa = PBXGroup;
+			children = (
+				E91CA2281BC05C4D00A8FCD3 /* netatmoclientTests.swift */,
+				E91CA22A1BC05C4D00A8FCD3 /* Info.plist */,
+			);
+			path = netatmoclientTests;
+			sourceTree = "<group>";
+		};
+		E91CA2321BC05C4D00A8FCD3 /* netatmoclientUITests */ = {
+			isa = PBXGroup;
+			children = (
+				E91CA2331BC05C4D00A8FCD3 /* netatmoclientUITests.swift */,
+				E91CA2351BC05C4D00A8FCD3 /* Info.plist */,
+			);
+			path = netatmoclientUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		E91CA20C1BC05C4D00A8FCD3 /* netatmoclient */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E91CA2381BC05C4D00A8FCD3 /* Build configuration list for PBXNativeTarget "netatmoclient" */;
+			buildPhases = (
+				E91CA2091BC05C4D00A8FCD3 /* Sources */,
+				E91CA20A1BC05C4D00A8FCD3 /* Frameworks */,
+				E91CA20B1BC05C4D00A8FCD3 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = netatmoclient;
+			productName = netatmoclient;
+			productReference = E91CA20D1BC05C4D00A8FCD3 /* netatmoclient.app */;
+			productType = "com.apple.product-type.application";
+		};
+		E91CA2231BC05C4D00A8FCD3 /* netatmoclientTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E91CA23B1BC05C4D00A8FCD3 /* Build configuration list for PBXNativeTarget "netatmoclientTests" */;
+			buildPhases = (
+				E91CA2201BC05C4D00A8FCD3 /* Sources */,
+				E91CA2211BC05C4D00A8FCD3 /* Frameworks */,
+				E91CA2221BC05C4D00A8FCD3 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E91CA2261BC05C4D00A8FCD3 /* PBXTargetDependency */,
+			);
+			name = netatmoclientTests;
+			productName = netatmoclientTests;
+			productReference = E91CA2241BC05C4D00A8FCD3 /* netatmoclientTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		E91CA22E1BC05C4D00A8FCD3 /* netatmoclientUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E91CA23E1BC05C4D00A8FCD3 /* Build configuration list for PBXNativeTarget "netatmoclientUITests" */;
+			buildPhases = (
+				E91CA22B1BC05C4D00A8FCD3 /* Sources */,
+				E91CA22C1BC05C4D00A8FCD3 /* Frameworks */,
+				E91CA22D1BC05C4D00A8FCD3 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E91CA2311BC05C4D00A8FCD3 /* PBXTargetDependency */,
+			);
+			name = netatmoclientUITests;
+			productName = netatmoclientUITests;
+			productReference = E91CA22F1BC05C4D00A8FCD3 /* netatmoclientUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		E91CA2051BC05C4D00A8FCD3 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0700;
+				ORGANIZATIONNAME = kSquare.de;
+				TargetAttributes = {
+					E91CA20C1BC05C4D00A8FCD3 = {
+						CreatedOnToolsVersion = 7.0.1;
+					};
+					E91CA2231BC05C4D00A8FCD3 = {
+						CreatedOnToolsVersion = 7.0.1;
+						TestTargetID = E91CA20C1BC05C4D00A8FCD3;
+					};
+					E91CA22E1BC05C4D00A8FCD3 = {
+						CreatedOnToolsVersion = 7.0.1;
+						TestTargetID = E91CA20C1BC05C4D00A8FCD3;
+					};
+				};
+			};
+			buildConfigurationList = E91CA2081BC05C4D00A8FCD3 /* Build configuration list for PBXProject "netatmoclient" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = E91CA2041BC05C4D00A8FCD3;
+			productRefGroup = E91CA20E1BC05C4D00A8FCD3 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				E91CA20C1BC05C4D00A8FCD3 /* netatmoclient */,
+				E91CA2231BC05C4D00A8FCD3 /* netatmoclientTests */,
+				E91CA22E1BC05C4D00A8FCD3 /* netatmoclientUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		E91CA20B1BC05C4D00A8FCD3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E91CA21E1BC05C4D00A8FCD3 /* LaunchScreen.storyboard in Resources */,
+				E91CA21B1BC05C4D00A8FCD3 /* Assets.xcassets in Resources */,
+				E91CA2161BC05C4D00A8FCD3 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E91CA2221BC05C4D00A8FCD3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E91CA22D1BC05C4D00A8FCD3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		E91CA2091BC05C4D00A8FCD3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E91CA2191BC05C4D00A8FCD3 /* netatmoclient.xcdatamodeld in Sources */,
+				E90A0E1E1BC2742A004578E4 /* NetworkStack.swift in Sources */,
+				E91CA2421BC05C6700A8FCD3 /* NetatmoNetworkProvider.swift in Sources */,
+				E91CA24A1BC15C7800A8FCD3 /* NetatmoModuleProvider.swift in Sources */,
+				E91CA2481BC158C400A8FCD3 /* NetatmoStationProvider.swift in Sources */,
+				E9CFB0C61BC18C4C004FE3CB /* NetatmoMeasureProvider.swift in Sources */,
+				E91CA2131BC05C4D00A8FCD3 /* ViewController.swift in Sources */,
+				E91CA2461BC156B200A8FCD3 /* CoreDataStore.swift in Sources */,
+				E91CA2111BC05C4D00A8FCD3 /* AppDelegate.swift in Sources */,
+				E90A0E1C1BC273DE004578E4 /* NetatmoLoginProvider.swift in Sources */,
+				E90A0E201BC28939004578E4 /* NetatmoCientConstants.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E91CA2201BC05C4D00A8FCD3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E91CA2291BC05C4D00A8FCD3 /* netatmoclientTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E91CA22B1BC05C4D00A8FCD3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E91CA2341BC05C4D00A8FCD3 /* netatmoclientUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		E91CA2261BC05C4D00A8FCD3 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = E91CA20C1BC05C4D00A8FCD3 /* netatmoclient */;
+			targetProxy = E91CA2251BC05C4D00A8FCD3 /* PBXContainerItemProxy */;
+		};
+		E91CA2311BC05C4D00A8FCD3 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = E91CA20C1BC05C4D00A8FCD3 /* netatmoclient */;
+			targetProxy = E91CA2301BC05C4D00A8FCD3 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		E91CA2141BC05C4D00A8FCD3 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E91CA2151BC05C4D00A8FCD3 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		E91CA21C1BC05C4D00A8FCD3 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E91CA21D1BC05C4D00A8FCD3 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		E91CA2361BC05C4D00A8FCD3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		E91CA2371BC05C4D00A8FCD3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		E91CA2391BC05C4D00A8FCD3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = netatmoclient/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = de.ksquare.netatmoclient;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		E91CA23A1BC05C4D00A8FCD3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = netatmoclient/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = de.ksquare.netatmoclient;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		E91CA23C1BC05C4D00A8FCD3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = netatmoclientTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = de.ksquare.netatmoclientTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/netatmoclient.app/netatmoclient";
+			};
+			name = Debug;
+		};
+		E91CA23D1BC05C4D00A8FCD3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = netatmoclientTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = de.ksquare.netatmoclientTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/netatmoclient.app/netatmoclient";
+			};
+			name = Release;
+		};
+		E91CA23F1BC05C4D00A8FCD3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = netatmoclientUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = de.ksquare.netatmoclientUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = netatmoclient;
+				USES_XCTRUNNER = YES;
+			};
+			name = Debug;
+		};
+		E91CA2401BC05C4D00A8FCD3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = netatmoclientUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = de.ksquare.netatmoclientUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = netatmoclient;
+				USES_XCTRUNNER = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		E91CA2081BC05C4D00A8FCD3 /* Build configuration list for PBXProject "netatmoclient" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E91CA2361BC05C4D00A8FCD3 /* Debug */,
+				E91CA2371BC05C4D00A8FCD3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E91CA2381BC05C4D00A8FCD3 /* Build configuration list for PBXNativeTarget "netatmoclient" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E91CA2391BC05C4D00A8FCD3 /* Debug */,
+				E91CA23A1BC05C4D00A8FCD3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E91CA23B1BC05C4D00A8FCD3 /* Build configuration list for PBXNativeTarget "netatmoclientTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E91CA23C1BC05C4D00A8FCD3 /* Debug */,
+				E91CA23D1BC05C4D00A8FCD3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E91CA23E1BC05C4D00A8FCD3 /* Build configuration list for PBXNativeTarget "netatmoclientUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E91CA23F1BC05C4D00A8FCD3 /* Debug */,
+				E91CA2401BC05C4D00A8FCD3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		E91CA2171BC05C4D00A8FCD3 /* netatmoclient.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				E91CA2181BC05C4D00A8FCD3 /* netatmoclient.xcdatamodel */,
+			);
+			currentVersion = E91CA2181BC05C4D00A8FCD3 /* netatmoclient.xcdatamodel */;
+			path = netatmoclient.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = E91CA2051BC05C4D00A8FCD3 /* Project object */;
+}
