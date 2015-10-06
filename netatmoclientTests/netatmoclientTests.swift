@@ -21,7 +21,7 @@ class netatmoclientTests: XCTestCase {
     super.setUp()
     let readyExpectation = expectationWithDescription("ready")
     
-    provider.loginWithUser("YOUR_LOGIN", password: "your-password") { (token, error) -> Void in
+    provider.loginWithUser(netatmo_username, password: netatmo_password) { (token, error) -> Void in
       XCTAssertNotNil(token)
       readyExpectation.fulfill()
     }
@@ -77,7 +77,7 @@ class netatmoclientTests: XCTestCase {
     let station = stationProvider.stations().first
     let module = moduleProvider.modules().first
     let startDate = measurementProvider.getLastMeasureDate(station, forModule: module)
-    let result = measurementProvider.getMeasurementfor(station!, module: module, withType: .Temperature , betweenStartDate: startDate, andEndDate: NSDate())
+    let result = measurementProvider.getMeasurementfor(station!, module: nil, withType: .CO2 , betweenStartDate: startDate, andEndDate: NSDate())
     
     XCTAssertNotEqual(result.count, 0)
     let lr = result.last

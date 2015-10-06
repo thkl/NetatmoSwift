@@ -56,7 +56,7 @@ class NetatmoMeasureProvider {
     guard let mvalue = value as? Double else {
       return nil
     }
-
+    
     let test = self.getMeasureWithTimeStamp(timeStamp, andType: type)
     
     if (test != nil){
@@ -150,15 +150,24 @@ class NetatmoMeasureProvider {
   }
   
   func getMeasurementfor(station : NetatmoStation, module : NetatmoModule?,
-    withType:NetatmoMeasureType, betweenStartDate: NSDate, andEndDate: NSDate)->Array<NetatmoMeasure> {
+    withTypes:[NetatmoMeasureType], betweenStartDate: NSDate, andEndDate: NSDate)->Array<NetatmoMeasure> {
+      return self.getMeasurementfor(station, module: module, withTypes: withTypes, betweenStartDate: betweenStartDate, andEndDate: andEndDate,ascending : false)
+  }
+  
+  func getMeasurementfor(station : NetatmoStation, module : NetatmoModule?,
+    withTypes:[NetatmoMeasureType], betweenStartDate: NSDate, andEndDate: NSDate, ascending: Bool)->Array<NetatmoMeasure> {
       
       let fetchRequest = NSFetchRequest(entityName: "Measurement")
       var resultArray = Array<NetatmoMeasure>()
-      let moduleid = (module != nil) ? module!.id : ""
+      let types = withTypes.map({$0.hashValue})
       
-      fetchRequest.predicate = NSPredicate(format: "stationid == %@ && moduleid == %@ && timestamp >= %@ && timestamp <= %@ && type == %d", argumentArray: [station.id,moduleid, betweenStartDate,andEndDate,withType.hashValue])
-      
-      fetchRequest.sortDescriptors = [NSSortDescriptor(key: "timestamp", ascending: false)]
+      if (module == nil) {
+        fetchRequest.predicate = NSPredicate(format: "stationid == %@ && moduleid == NULL && timestamp >= %@ && timestamp <= %@ && type IN %@", argumentArray: [station.id, betweenStartDate,andEndDate,types])
+      } else {
+        let moduleid = (module != nil) ? module!.id : ""
+        fetchRequest.predicate = NSPredicate(format: "stationid == %@ && moduleid == %@ && timestamp >= %@ && timestamp <= %@ && type IN %@", argumentArray: [station.id,moduleid, betweenStartDate,andEndDate,types])
+      }
+      fetchRequest.sortDescriptors = [NSSortDescriptor(key: "timestamp", ascending: ascending)]
       
       let results = try! coreDataStore.managedObjectContext.executeFetchRequest(fetchRequest) as! [NSManagedObject]
       for obj: NSManagedObject in results {
