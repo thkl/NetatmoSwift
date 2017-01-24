@@ -10,7 +10,7 @@ import Foundation
 import CoreData
 
 struct NetatmoMeasure: Equatable {
-  var timestamp : NSDate
+  var timestamp : Date
   var type: Int
   var value : Double
   
@@ -27,9 +27,9 @@ func ==(lhs: NetatmoMeasure, rhs: NetatmoMeasure) -> Bool {
 extension NetatmoMeasure {
   
   init(managedObject : NSManagedObject) {
-    self.timestamp = managedObject.valueForKey("timestamp") as! NSDate
-    self.type =  managedObject.valueForKey("type") as! Int
-    self.value =  managedObject.valueForKey("value") as! Double
+    self.timestamp = managedObject.value(forKey: "timestamp") as! Date
+    self.type =  managedObject.value(forKey: "type") as! Int
+    self.value =  managedObject.value(forKey: "value") as! Double
   }
   
 }
@@ -38,7 +38,7 @@ extension NetatmoMeasure {
 
 class NetatmoMeasureProvider {
   
-  private let coreDataStore: CoreDataStore!
+  fileprivate let coreDataStore: CoreDataStore!
   
   init(coreDataStore : CoreDataStore?) {
     if (coreDataStore != nil) {
@@ -52,7 +52,7 @@ class NetatmoMeasureProvider {
     try! coreDataStore.managedObjectContext.save()
   }
   
-  func createMeasure(timeStamp : NSDate , type : Int, value: AnyObject? , forStation : NetatmoStation? , forModule : NetatmoModule? )->NSManagedObject? {
+  func createMeasure(_ timeStamp : Date , type : Int, value: AnyObject? , forStation : NetatmoStation? , forModule : NetatmoModule? )->NSManagedObject? {
     guard let mvalue = value as? Double else {
       return nil
     }
@@ -63,8 +63,11 @@ class NetatmoMeasureProvider {
       return test!
     }
     
-    let newMeasure = NSManagedObject(entity: coreDataStore.managedObjectContext.persistentStoreCoordinator!.managedObjectModel.entitiesByName["Measurement"]!,
-      insertIntoManagedObjectContext: coreDataStore.managedObjectContext)
+    
+    let newMeasure = NSEntityDescription.insertNewObject(forEntityName: "Measurement", into: coreDataStore.managedObjectContext) 
+    
+    //let newMeasure = NSManagedObject(entity: coreDataStore.managedObjectContext.persistentStoreCoordinator!.managedObjectModel.entitiesByName["Measurement"]!,
+    // insertInto: coreDataStore.managedObjectContext)
     
     newMeasure.setValue(timeStamp, forKey: "timestamp")
     newMeasure.setValue(type, forKey: "type")
@@ -83,22 +86,23 @@ class NetatmoMeasureProvider {
     
     try! coreDataStore.managedObjectContext.save()
     return newMeasure
+    
   }
   
-  func insertMeasuresWithJsonData(json: NSDictionary , forStation : NetatmoStation? , forModule : NetatmoModule?) {
+  func insertMeasuresWithJsonData(_ json: NSDictionary , forStation : NetatmoStation? , forModule : NetatmoModule?) {
     
     if let body = json["body"] as? Array<NSDictionary> {
       for dat : NSDictionary in body {
         
-        let beg_time = dat["beg_time"]?.doubleValue
+        let beg_time = (dat["beg_time"] as AnyObject).doubleValue
         var step : Double = 0
         
-        let step_time = dat["step_time"]?.doubleValue
+        let step_time = (dat["step_time"] as AnyObject).doubleValue
         let values = dat["value"] as! Array<NSArray>
         
         for value : NSArray in values {
           
-          let dt = NSDate(timeIntervalSince1970: beg_time! + step)
+          let dt = Date(timeIntervalSince1970: beg_time! + step)
           
           var measurelist = forStation!.measurementTypes
           
@@ -109,8 +113,8 @@ class NetatmoMeasureProvider {
           var i = 0
           
           for measureType: NetatmoMeasureType in measurelist {
-            self.createMeasure(dt, type: measureType.hashValue , value: value[i], forStation: forStation, forModule: forModule)
-            i++
+            self.createMeasure(dt, type: measureType.hashValue , value: value[i] as AnyObject?, forStation: forStation, forModule: forModule)
+            i += 1
           }
           
           if (step_time != nil ) { step = step + step_time! }
@@ -120,44 +124,46 @@ class NetatmoMeasureProvider {
     
   }
   
-  func getLastMeasureDate(forStation : NetatmoStation? , forModule : NetatmoModule?)->NSDate {
-    let fetchRequest = NSFetchRequest(entityName: "Measurement")
+  func getLastMeasureDate(_ forStation : NetatmoStation? , forModule : NetatmoModule?)->Date {
+    let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Measurement")
     
     if (forModule != nil) {
       fetchRequest.predicate = NSPredicate(format: "moduleid == %@", argumentArray: [forModule!.id])
     } else {
-      fetchRequest.predicate = NSPredicate(format: "stationid == %@ && moduleid = NULL", argumentArray: [forStation!.id])
+      if (forStation != nil) {
+        fetchRequest.predicate = NSPredicate(format: "stationid == %@ && moduleid = NULL", argumentArray: [forStation!.id])
+      }
     }
     
     fetchRequest.sortDescriptors = [NSSortDescriptor(key: "timestamp", ascending: false)]
     fetchRequest.fetchLimit = 1
-    let results = try! coreDataStore.managedObjectContext.executeFetchRequest(fetchRequest) as! [NSManagedObject]
+    let results = try! coreDataStore.managedObjectContext.fetch(fetchRequest) as! [NSManagedObject]
     
     if ( results.first != nil ) {
-      return results.first?.valueForKey("timestamp") as! NSDate
+      return results.first?.value(forKey: "timestamp") as! Date
     } else {
-      return NSDate().dateByAddingTimeInterval(-3600)
+      return Date().addingTimeInterval(-86400)
     }
   }
   
-  private func getMeasureWithTimeStamp(date : NSDate , andType : Int)->NSManagedObject? {
-    let fetchRequest = NSFetchRequest(entityName: "Measurement")
+  fileprivate func getMeasureWithTimeStamp(_ date : Date , andType : Int)->NSManagedObject? {
+    let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Measurement")
     fetchRequest.predicate = NSPredicate(format: "timestamp == %@ && type == %@", argumentArray: [date,andType])
     
     fetchRequest.fetchLimit = 1
-    let results = try! coreDataStore.managedObjectContext.executeFetchRequest(fetchRequest) as! [NSManagedObject]
+    let results = try! coreDataStore.managedObjectContext.fetch(fetchRequest) as! [NSManagedObject]
     return results.first
   }
   
-  func getMeasurementfor(station : NetatmoStation, module : NetatmoModule?,
-    withTypes:[NetatmoMeasureType], betweenStartDate: NSDate, andEndDate: NSDate)->Array<NetatmoMeasure> {
+  func getMeasurementfor(_ station : NetatmoStation, module : NetatmoModule?,
+    withTypes:[NetatmoMeasureType], betweenStartDate: Date, andEndDate: Date)->Array<NetatmoMeasure> {
       return self.getMeasurementfor(station, module: module, withTypes: withTypes, betweenStartDate: betweenStartDate, andEndDate: andEndDate,ascending : false)
   }
   
-  func getMeasurementfor(station : NetatmoStation, module : NetatmoModule?,
-    withTypes:[NetatmoMeasureType], betweenStartDate: NSDate, andEndDate: NSDate, ascending: Bool)->Array<NetatmoMeasure> {
+  func getMeasurementfor(_ station : NetatmoStation, module : NetatmoModule?,
+    withTypes:[NetatmoMeasureType], betweenStartDate: Date, andEndDate: Date, ascending: Bool)->Array<NetatmoMeasure> {
       
-      let fetchRequest = NSFetchRequest(entityName: "Measurement")
+      let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Measurement")
       var resultArray = Array<NetatmoMeasure>()
       let types = withTypes.map({$0.hashValue})
       
@@ -169,7 +175,7 @@ class NetatmoMeasureProvider {
       }
       fetchRequest.sortDescriptors = [NSSortDescriptor(key: "timestamp", ascending: ascending)]
       
-      let results = try! coreDataStore.managedObjectContext.executeFetchRequest(fetchRequest) as! [NSManagedObject]
+      let results = try! coreDataStore.managedObjectContext.fetch(fetchRequest) as! [NSManagedObject]
       for obj: NSManagedObject in results {
         resultArray.append(NetatmoMeasure(managedObject: obj))
       }

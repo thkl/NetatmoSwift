@@ -13,7 +13,7 @@ let netatmo_client_id : String? = "..."
 let netatmo_client_secret : String? = "..."
 
 let netatmo_username : String = "..."
-let netatmo_password : String = "..."
+let netatmo_password : String =  "..."
 
 enum NetatmoMeasureType: String {
   case Temperature = "Temperature"
@@ -27,18 +27,18 @@ enum NetatmoMeasureType: String {
 }
 
 enum NetatmoMeasureUnit: Int {
-  case Temperature,CO2,Humidity,Pressure,Noise,Rain,WindStrength,WindAngle
+  case temperature,co2,humidity,pressure,noise,rain,windStrength,windAngle
     
   var unit : String {
     switch self {
-    case .Temperature: return "°C"
-    case .CO2: return "ppm"
-    case .Humidity: return "%"
-    case .Pressure: return "mbar"
-    case .Noise: return "db"
-    case .Rain: return "mm"
-    case .WindStrength: return "km/h"
-    case .WindAngle: return "°"
+    case .temperature: return "°C"
+    case .co2: return "ppm"
+    case .humidity: return "%"
+    case .pressure: return "mbar"
+    case .noise: return "db"
+    case .rain: return "mm"
+    case .windStrength: return "km/h"
+    case .windAngle: return "°"
     }
   }
   

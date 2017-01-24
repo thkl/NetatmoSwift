@@ -7,9 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		E90A0E1C1BC273DE004578E4 /* NetatmoLoginProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = E90A0E1B1BC273DE004578E4 /* NetatmoLoginProvider.swift */; settings = {ASSET_TAGS = (); }; };
-		E90A0E1E1BC2742A004578E4 /* NetworkStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = E90A0E1D1BC2742A004578E4 /* NetworkStack.swift */; settings = {ASSET_TAGS = (); }; };
-		E90A0E201BC28939004578E4 /* NetatmoCientConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = E90A0E1F1BC28939004578E4 /* NetatmoCientConstants.swift */; settings = {ASSET_TAGS = (); }; };
+		E90A0E1C1BC273DE004578E4 /* NetatmoLoginProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = E90A0E1B1BC273DE004578E4 /* NetatmoLoginProvider.swift */; };
+		E90A0E1E1BC2742A004578E4 /* NetworkStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = E90A0E1D1BC2742A004578E4 /* NetworkStack.swift */; };
+		E90A0E201BC28939004578E4 /* NetatmoCientConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = E90A0E1F1BC28939004578E4 /* NetatmoCientConstants.swift */; };
 		E91CA2111BC05C4D00A8FCD3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E91CA2101BC05C4D00A8FCD3 /* AppDelegate.swift */; };
 		E91CA2131BC05C4D00A8FCD3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E91CA2121BC05C4D00A8FCD3 /* ViewController.swift */; };
 		E91CA2161BC05C4D00A8FCD3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E91CA2141BC05C4D00A8FCD3 /* Main.storyboard */; };
@@ -18,11 +18,11 @@
 		E91CA21E1BC05C4D00A8FCD3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E91CA21C1BC05C4D00A8FCD3 /* LaunchScreen.storyboard */; };
 		E91CA2291BC05C4D00A8FCD3 /* netatmoclientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E91CA2281BC05C4D00A8FCD3 /* netatmoclientTests.swift */; };
 		E91CA2341BC05C4D00A8FCD3 /* netatmoclientUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E91CA2331BC05C4D00A8FCD3 /* netatmoclientUITests.swift */; };
-		E91CA2421BC05C6700A8FCD3 /* NetatmoNetworkProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = E91CA2411BC05C6700A8FCD3 /* NetatmoNetworkProvider.swift */; settings = {ASSET_TAGS = (); }; };
-		E91CA2461BC156B200A8FCD3 /* CoreDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = E91CA2451BC156B200A8FCD3 /* CoreDataStore.swift */; settings = {ASSET_TAGS = (); }; };
-		E91CA2481BC158C400A8FCD3 /* NetatmoStationProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = E91CA2471BC158C400A8FCD3 /* NetatmoStationProvider.swift */; settings = {ASSET_TAGS = (); }; };
-		E91CA24A1BC15C7800A8FCD3 /* NetatmoModuleProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = E91CA2491BC15C7800A8FCD3 /* NetatmoModuleProvider.swift */; settings = {ASSET_TAGS = (); }; };
-		E9CFB0C61BC18C4C004FE3CB /* NetatmoMeasureProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9CFB0C51BC18C4C004FE3CB /* NetatmoMeasureProvider.swift */; settings = {ASSET_TAGS = (); }; };
+		E91CA2421BC05C6700A8FCD3 /* NetatmoNetworkProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = E91CA2411BC05C6700A8FCD3 /* NetatmoNetworkProvider.swift */; };
+		E91CA2461BC156B200A8FCD3 /* CoreDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = E91CA2451BC156B200A8FCD3 /* CoreDataStore.swift */; };
+		E91CA2481BC158C400A8FCD3 /* NetatmoStationProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = E91CA2471BC158C400A8FCD3 /* NetatmoStationProvider.swift */; };
+		E91CA24A1BC15C7800A8FCD3 /* NetatmoModuleProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = E91CA2491BC15C7800A8FCD3 /* NetatmoModuleProvider.swift */; };
+		E9CFB0C61BC18C4C004FE3CB /* NetatmoMeasureProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9CFB0C51BC18C4C004FE3CB /* NetatmoMeasureProvider.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -219,13 +219,16 @@
 				TargetAttributes = {
 					E91CA20C1BC05C4D00A8FCD3 = {
 						CreatedOnToolsVersion = 7.0.1;
+						LastSwiftMigration = 0820;
 					};
 					E91CA2231BC05C4D00A8FCD3 = {
 						CreatedOnToolsVersion = 7.0.1;
+						LastSwiftMigration = 0820;
 						TestTargetID = E91CA20C1BC05C4D00A8FCD3;
 					};
 					E91CA22E1BC05C4D00A8FCD3 = {
 						CreatedOnToolsVersion = 7.0.1;
+						LastSwiftMigration = 0820;
 						TestTargetID = E91CA20C1BC05C4D00A8FCD3;
 					};
 				};
@@ -436,6 +439,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = de.ksquare.netatmoclient;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -447,6 +451,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = de.ksquare.netatmoclient;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -458,6 +463,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = de.ksquare.netatmoclientTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/netatmoclient.app/netatmoclient";
 			};
 			name = Debug;
@@ -470,6 +476,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = de.ksquare.netatmoclientTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/netatmoclient.app/netatmoclient";
 			};
 			name = Release;
@@ -481,6 +488,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = de.ksquare.netatmoclientUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_TARGET_NAME = netatmoclient;
 				USES_XCTRUNNER = YES;
 			};
@@ -493,6 +501,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = de.ksquare.netatmoclientUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_TARGET_NAME = netatmoclient;
 				USES_XCTRUNNER = YES;
 			};

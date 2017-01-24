@@ -9,7 +9,7 @@
 import Foundation
 
 
-class NetworkStack: NSObject, NSURLSessionDelegate {
+class NetworkStack: NSObject, URLSessionDelegate {
   
   enum httpMethod: String {
     case GET = "GET"
@@ -18,38 +18,45 @@ class NetworkStack: NSObject, NSURLSessionDelegate {
     case PUT = "PUT"
   }
   
-  let config = NSURLSessionConfiguration.defaultSessionConfiguration()
+  let config = URLSessionConfiguration.default
 
-  func callUrl(url: NSURL, method: httpMethod, arguments: [String: AnyObject]?,  completionHandler: (resultData : NSData?, error : NSError?)->Void) {
+  func callUrl(_ url: URL, method: httpMethod, arguments: [String: AnyObject]?,  completionHandler:  @escaping (_ resultData : Data?, _ error : Error?)->Void) {
     var query : String = ""
     if (arguments != nil) {
         var components: [(String, String)] = []
-        for key in Array(arguments!.keys).sort(<) {
+        for key in Array(arguments!.keys).sorted(by: <) {
           let value = arguments![key]!
           components += queryComponents(key, value)
         }
-        query =  (components.map { "\($0)=\($1)" } as [String]).joinWithSeparator("&")
+        query =  (components.map { "\($0)=\($1)" } as [String]).joined(separator: "&")
       }
-    let request = NSMutableURLRequest(URL: url)
+    let request = NSMutableURLRequest(url: url)
 
     switch method {
     case .GET , .HEAT , .PUT :
-      request.URL = url.URLByAppendingPathComponent(query)
+      request.url = url.appendingPathComponent(query)
     case .POST :
-      request.HTTPBody = query.dataUsingEncoding(NSUTF8StringEncoding)
+      request.httpBody = query.data(using: String.Encoding.utf8)
       request.addValue("application/x-www-form-urlencoded;charset=UTF-8", forHTTPHeaderField: "Content-Type")
     }
     
-    request.HTTPMethod = method.rawValue
-    let session = NSURLSession(configuration: self.config, delegate: self, delegateQueue: nil)
-    let task = session.dataTaskWithRequest(request, completionHandler: { (data, response, error) -> Void in
-      completionHandler(resultData: data, error: error)
-    })
-    task.resume()
+    request.httpMethod = method.rawValue
+    let session = URLSession(configuration: self.config, delegate: self, delegateQueue: nil)
+    
+    
+    let dataTask = session.dataTask(with: request as URLRequest) {data,response,error in
+      completionHandler(data, error)
+    }
+
+    dataTask.resume()
+    
+    
+    print("Call URL %@", request.url!)
+    dataTask.resume()
   }
 
   
-  private func queryComponents(key: String, _ value: AnyObject) -> [(String, String)] {
+  fileprivate func queryComponents(_ key: String, _ value: AnyObject) -> [(String, String)] {
     var components: [(String, String)] = []
     if let dictionary = value as? [String: AnyObject] {
       for (nestedKey, value) in dictionary {
@@ -60,8 +67,8 @@ class NetworkStack: NSObject, NSURLSessionDelegate {
         components += queryComponents("\(key)[]", value)
       }
     } else {
-      let value = "\(value)".stringByAddingPercentEncodingWithAllowedCharacters(.URLHostAllowedCharacterSet())
-      components.append(key.stringByAddingPercentEncodingWithAllowedCharacters(.URLHostAllowedCharacterSet())!,value!)
+      let value = "\(value)".addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)
+      components.append(key.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!,value!)
     }
     
     return components

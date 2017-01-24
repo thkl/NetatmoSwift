@@ -14,13 +14,13 @@ class NetatmoLoginProvider {
   let coreDataStore = CoreDataStore()
   
   /**
-  Fetch current Token as an NSManagedObject from the Database
-  */
-  private func getTokenObject(tokenName : String)->NSManagedObject? {
-    let fetchRequest = NSFetchRequest(entityName: "Metadata")
+   Fetch current Token as an NSManagedObject from the Database
+   */
+  fileprivate func getTokenObject(_ tokenName : String)->NSManagedObject? {
+    let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Metadata")
     fetchRequest.predicate = NSPredicate(format: "key == %@",tokenName)
     fetchRequest.fetchLimit = 1
-    let results = try! coreDataStore.managedObjectContext.executeFetchRequest(fetchRequest) as! [NSManagedObject]
+    let results = try! coreDataStore.managedObjectContext.fetch(fetchRequest) as! [NSManagedObject]
     if results.count == 0 {
       return nil
     }
@@ -29,42 +29,43 @@ class NetatmoLoginProvider {
   
   
   /**
-  Returns the current token which stored in the Database
-  if the token is not there or if its invalid the method returns nil
-  */
-  func getAuthenticationToken(completionhandler:(token: String?)->Void) {
+   Returns the current token which stored in the Database
+   if the token is not there or if its invalid the method returns nil
+   */
+  func getAuthenticationToken(_ completionhandler:@escaping (_ token: String?)->Void) {
     
     guard let token = self.getTokenObject("authToken") else {
-      completionhandler(token: nil)
+      completionhandler(nil)
       return
     }
     
-    guard let expiration = token.valueForKey("expires") as? NSDate else {
-      completionhandler(token: nil)
+    guard let expiration = token.value(forKey: "expires") as? Date else {
+      completionhandler(nil)
       return
     }
     
-    if (expiration.timeIntervalSinceDate(NSDate())>0) {
-      completionhandler(token: token.valueForKey("value") as? String)
+    if (expiration.timeIntervalSince(Date())>0) {
+      NSLog("Authentication Token found, is still valid")
+      completionhandler(token.value(forKey: "value") as? String)
       return
     }
-
+    
     // token is no longer valid - lets refresh them
     NSLog("Authentication Token found, have to refresh")
     self.refreshAuthenticationToken { (newToken, error) -> Void in
       if (error == nil) {
-        completionhandler(token: newToken)
+        completionhandler(newToken)
         return
       } else {
-        completionhandler(token: nil)
+        completionhandler(nil)
         return
       }
     }
   }
   
   /**
-  Deletes the current token Object in the Database
-  */
+   Deletes the current token Object in the Database
+   */
   func deleteAuthenticationToken() {
     guard let token = self.getTokenObject("authToken") else {
       return
@@ -75,46 +76,46 @@ class NetatmoLoginProvider {
   
   
   /**
-  Refreshes the current Token agains the Netatmo API
-  */
-  func refreshAuthenticationToken(completionhandler:(newToken: String?, error:NSError?)->Void) {
+   Refreshes the current Token agains the Netatmo API
+   */
+  func refreshAuthenticationToken(_ completionhandler:@escaping (_ newToken: String?, _ error:NSError?)->Void) {
     guard let refreshToken = self.getTokenObject("refresh_token") else {
-      completionhandler(newToken: nil, error: NSError(domain: "de.ksquare.netatmo.refreshtoken_notfound", code: 500, userInfo: nil))
+      completionhandler(nil, NSError(domain: "de.ksquare.netatmo.refreshtoken_notfound", code: 500, userInfo: nil))
       return
     }
     
     let networkStack = NetworkStack()
-    let url = NSURL(string: "https://api.netatmo.net/oauth2/token")
-    let strToken = refreshToken.valueForKey("value") as! String
+    let url = URL(string: "https://api.netatmo.net/oauth2/token")
+    let strToken = refreshToken.value(forKey: "value") as! String
     
     let postData = ["grant_type":"refresh_token",
-      "client_id":netatmo_client_id!,
-      "client_secret":netatmo_client_secret!,
-      "refresh_token":strToken]
+                    "client_id":netatmo_client_id!,
+                    "client_secret":netatmo_client_secret!,
+                    "refresh_token":strToken]
     
-    networkStack.callUrl(url!, method: .POST, arguments: postData) { (resultData, error) -> Void in
+    networkStack.callUrl(url!, method: .POST, arguments: postData as [String : AnyObject]?) { (resultData, error) -> Void in
       
       if (error == nil) {
         do {
-          if let parsed = try NSJSONSerialization.JSONObjectWithData(resultData!, options: NSJSONReadingOptions.AllowFragments) as? NSDictionary {
-            let expireDate = NSDate().dateByAddingTimeInterval(parsed["expires_in"] as! Double)
+          if let parsed = try JSONSerialization.jsonObject(with: resultData!, options: JSONSerialization.ReadingOptions.allowFragments) as? NSDictionary {
+            let expireDate = Date().addingTimeInterval(parsed["expires_in"] as! Double)
             let accessToken = parsed["access_token"] as! String
             let refreshToken = parsed["refresh_token"] as! String
             self.storeToken("authToken", tokenValue: accessToken, expiredAt: expireDate)
             self.storeToken("refreshToken", tokenValue: refreshToken, expiredAt: expireDate)
-            completionhandler(newToken: accessToken, error: nil)
+            completionhandler(accessToken, nil)
           }
           
         }catch let error as NSError {
           print("A JSON parsing error occurred, here are the details:\n \(error)")
-          completionhandler(newToken: nil,error: error)
+          completionhandler(nil,error)
         }
       }
     }
   }
   
   
-  private func storeToken(tokenName : String, tokenValue: String, expiredAt: NSDate) {
+  fileprivate func storeToken(_ tokenName : String, tokenValue: String, expiredAt: Date) {
     // First check an old Token for updateing
     if let token = self.getTokenObject(tokenName) {
       token.setValue(tokenValue, forKey: "value")
@@ -122,7 +123,7 @@ class NetatmoLoginProvider {
       try! coreDataStore.managedObjectContext.save()
     } else {
       // Create a new DB Object
-      let newToken = NSManagedObject(entity: coreDataStore.managedObjectContext.persistentStoreCoordinator!.managedObjectModel.entitiesByName["Metadata"]!, insertIntoManagedObjectContext: coreDataStore.managedObjectContext)
+      let newToken = NSManagedObject(entity: coreDataStore.managedObjectContext.persistentStoreCoordinator!.managedObjectModel.entitiesByName["Metadata"]!, insertInto: coreDataStore.managedObjectContext)
       newToken.setValue(tokenName, forKey: "key")
       newToken.setValue(tokenValue, forKey: "value")
       newToken.setValue(expiredAt, forKey: "expires")
@@ -131,9 +132,9 @@ class NetatmoLoginProvider {
   }
   
   /**
-  Make a full Login onto the Netatmo API
-  */
-  func authenticate(username: String, password: String, completionhandler:(newToken: String? , error : NSError?)->Void) {
+   Make a full Login onto the Netatmo API
+   */
+  func authenticate(_ username: String, password: String, completionhandler:@escaping (_ newToken: String? , _ error : Error?)->Void) {
     
     //do nothing if the token is still valid
     //todo Refresh the token
@@ -141,38 +142,42 @@ class NetatmoLoginProvider {
       
       if (token != nil) {
         NSLog("Use cached Token")
-        completionhandler(newToken: token, error: nil)
+        completionhandler(token, nil)
         return
       }
       
       let networkStack = NetworkStack()
-      let url = NSURL(string: "https://api.netatmo.net/oauth2/token")
+      let url = URL(string: "https://api.netatmo.net/oauth2/token")
       
       let postData = ["grant_type":"password",
-        "client_id":netatmo_client_id!,
-        "client_secret":netatmo_client_secret!,
-        "username":username,
-        "password":password]
+                      "client_id":netatmo_client_id!,
+                      "client_secret":netatmo_client_secret!,
+                      "username":username,
+                      "password":password]
       
-      networkStack.callUrl(url!, method: .POST, arguments: postData) { (resultData, error) -> Void in
+      networkStack.callUrl(url!, method: .POST, arguments: postData as [String : AnyObject]?) { (resultData, error) -> Void in
         
         if (error == nil) {
           do {
-            if let parsed = try NSJSONSerialization.JSONObjectWithData(resultData!, options: NSJSONReadingOptions.AllowFragments) as? NSDictionary {
-              let expireDate = NSDate().dateByAddingTimeInterval(parsed["expires_in"] as! Double)
-              let accessToken = parsed["access_token"] as! String
-              let refreshToken = parsed["refresh_token"] as! String
-              self.storeToken("authToken", tokenValue: accessToken, expiredAt: expireDate)
-              self.storeToken("refreshToken", tokenValue: refreshToken, expiredAt: expireDate)
-              completionhandler(newToken: accessToken , error: nil)
+            if let parsed = try JSONSerialization.jsonObject(with: resultData!, options: JSONSerialization.ReadingOptions.allowFragments) as? NSDictionary {
+              if let expired = parsed["expires_in"] as? Double {
+                let expireDate = Date().addingTimeInterval(expired)
+                let accessToken = parsed["access_token"] as! String
+                let refreshToken = parsed["refresh_token"] as! String
+                self.storeToken("authToken", tokenValue: accessToken, expiredAt: expireDate)
+                self.storeToken("refreshToken", tokenValue: refreshToken, expiredAt: expireDate)
+                completionhandler(accessToken , nil)
+              } else {
+                completionhandler(nil , nil)
+              }
             }
             
           }catch let error as NSError {
             print("A JSON parsing error occurred, here are the details:\n \(error)")
-            completionhandler(newToken: nil, error: error)
+            completionhandler(nil, error)
           }
         } else {
-          completionhandler(newToken: nil, error: error)
+          completionhandler(nil, error)
         }
       }
     }

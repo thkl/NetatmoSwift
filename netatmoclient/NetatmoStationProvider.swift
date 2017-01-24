@@ -14,11 +14,11 @@ struct NetatmoStation: Equatable {
   var stationName: String!
   var type: String!
   
-  var lastUpgrade : NSDate!
+  var lastUpgrade : Date!
   var firmware : Int!
   var moduleIds : Array<String> = []
   
-  var lastStatusStore : NSDate = NSDate()
+  var lastStatusStore : Date = Date()
 }
 
 func ==(lhs: NetatmoStation, rhs: NetatmoStation) -> Bool {
@@ -29,9 +29,9 @@ func ==(lhs: NetatmoStation, rhs: NetatmoStation) -> Bool {
 extension NetatmoStation {
   
   init(managedObject : NSManagedObject) {
-    self.id = managedObject.valueForKey("stationid") as! String
-    self.stationName = managedObject.valueForKey("stationname") as! String
-    self.type =  managedObject.valueForKey("stationtype") as! String
+    self.id = managedObject.value(forKey: "stationid") as! String
+    self.stationName = managedObject.value(forKey: "stationname") as! String
+    self.type =  managedObject.value(forKey: "stationtype") as! String
   }
   
   var measurementTypes : [NetatmoMeasureType] {
@@ -53,7 +53,7 @@ extension NetatmoStation {
 
 class NetatmoStationProvider {
   
-  private let coreDataStore: CoreDataStore!
+  fileprivate let coreDataStore: CoreDataStore!
 
   init(coreDataStore : CoreDataStore?) {
     if (coreDataStore != nil) {
@@ -68,14 +68,14 @@ class NetatmoStationProvider {
   }
   
   func stations()->Array<NetatmoStation> {
-    let fetchRequest = NSFetchRequest(entityName: "Station")
+    let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Station")
     fetchRequest.fetchLimit = 1
-    let results = try! coreDataStore.managedObjectContext.executeFetchRequest(fetchRequest) as! [NSManagedObject]
+    let results = try! coreDataStore.managedObjectContext.fetch(fetchRequest) as! [NSManagedObject]
     return results.map{NetatmoStation(managedObject: $0 )}
   }
   
-  func createStation(id: String, name: String, type : String)->NSManagedObject {
-    let newStation = NSManagedObject(entity: coreDataStore.managedObjectContext.persistentStoreCoordinator!.managedObjectModel.entitiesByName["Station"]!, insertIntoManagedObjectContext: coreDataStore.managedObjectContext)
+  func createStation(_ id: String, name: String, type : String)->NSManagedObject {
+    let newStation = NSManagedObject(entity: coreDataStore.managedObjectContext.persistentStoreCoordinator!.managedObjectModel.entitiesByName["Station"]!, insertInto: coreDataStore.managedObjectContext)
     
     newStation.setValue(id, forKey: "stationid")
     newStation.setValue(name, forKey: "stationname")
@@ -84,11 +84,11 @@ class NetatmoStationProvider {
     return newStation
   }
   
-  func getStationWithId(id: String)->NSManagedObject? {
-    let fetchRequest = NSFetchRequest(entityName: "Station")
+  func getStationWithId(_ id: String)->NSManagedObject? {
+    let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Station")
     fetchRequest.predicate = NSPredicate(format: "stationid == %@", argumentArray: [id])
     fetchRequest.fetchLimit = 1
-    let results = try! coreDataStore.managedObjectContext.executeFetchRequest(fetchRequest) as! [NSManagedObject]
+    let results = try! coreDataStore.managedObjectContext.fetch(fetchRequest) as! [NSManagedObject]
     return results.first
   }
   

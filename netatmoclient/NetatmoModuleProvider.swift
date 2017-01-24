@@ -24,10 +24,10 @@ func ==(lhs: NetatmoModule, rhs: NetatmoModule) -> Bool {
 extension NetatmoModule {
   
   init(managedObject : NSManagedObject) {
-    self.id = managedObject.valueForKey("moduleid") as! String
-    self.moduleName = managedObject.valueForKey("modulename") as! String
-    self.type =  managedObject.valueForKey("moduletype") as! String
-    self.stationid =  managedObject.valueForKey("parentstationid") as! String
+    self.id = managedObject.value(forKey: "moduleid") as! String
+    self.moduleName = managedObject.value(forKey: "modulename") as! String
+    self.type =  managedObject.value(forKey: "moduletype") as! String
+    self.stationid =  managedObject.value(forKey: "parentstationid") as! String
   }
   
   var measurementTypes : [NetatmoMeasureType] {
@@ -51,7 +51,7 @@ extension NetatmoModule {
 
 class NetadmoModuleProvider {
   
-  private let coreDataStore: CoreDataStore!
+  fileprivate let coreDataStore: CoreDataStore!
   
   init(coreDataStore : CoreDataStore?) {
     if (coreDataStore != nil) {
@@ -65,15 +65,15 @@ class NetadmoModuleProvider {
   }
   
   func modules()->Array<NetatmoModule> {
-    let fetchRequest = NSFetchRequest(entityName: "Module")
+    let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Module")
     fetchRequest.fetchLimit = 1
-    let results = try! coreDataStore.managedObjectContext.executeFetchRequest(fetchRequest) as! [NSManagedObject]
+    let results = try! coreDataStore.managedObjectContext.fetch(fetchRequest) as! [NSManagedObject]
     return results.map{NetatmoModule(managedObject: $0 )}
   }
 
   
-  func createModule(id: String, name: String, type : String,stationId : String)->NSManagedObject {
-    let newModule = NSManagedObject(entity: coreDataStore.managedObjectContext.persistentStoreCoordinator!.managedObjectModel.entitiesByName["Module"]!, insertIntoManagedObjectContext: coreDataStore.managedObjectContext)
+  func createModule(_ id: String, name: String, type : String,stationId : String)->NSManagedObject {
+    let newModule = NSManagedObject(entity: coreDataStore.managedObjectContext.persistentStoreCoordinator!.managedObjectModel.entitiesByName["Module"]!, insertInto: coreDataStore.managedObjectContext)
     
     newModule.setValue(id, forKey: "moduleid")
     newModule.setValue(name, forKey: "modulename")
@@ -83,12 +83,21 @@ class NetadmoModuleProvider {
     return newModule
   }
   
-  func getModuleWithId(id: String)->NSManagedObject? {
-    let fetchRequest = NSFetchRequest(entityName: "Module")
+  func getModuleWithId(_ id: String)->NSManagedObject? {
+    let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Module")
     fetchRequest.predicate = NSPredicate(format: "moduleid == %@", argumentArray: [id])
     fetchRequest.fetchLimit = 1
-    let results = try! coreDataStore.managedObjectContext.executeFetchRequest(fetchRequest) as! [NSManagedObject]
+    let results = try! coreDataStore.managedObjectContext.fetch(fetchRequest) as! [NSManagedObject]
     return results.first
   }
+  
+  func modulesAtStation(_ station : NetatmoStation)->Array<NetatmoModule> {
+    let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Module")
+    fetchRequest.predicate = NSPredicate(format: "parentstationid == %@", argumentArray: [station.id])
+    let results = try! coreDataStore.managedObjectContext.fetch(fetchRequest) as! [NSManagedObject]
+    return results.map{NetatmoModule(managedObject: $0 )}
+    
+  }
+
   
 }
